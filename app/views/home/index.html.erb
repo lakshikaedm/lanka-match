@@ -1,0 +1,7 @@
+<h1>Lanka Match</h1>
+
+<% if user_signed_in? %>
+  <p>Signed in as <%= current_user.email %></p>
+<% else %>
+  <p>You are not signed in.</p>
+<% end %>
