@@ -1,0 +1,12 @@
+  [1m[35mSQL (0.8ms)[0m  [1m[35mSET search_path TO public /*application='LankaMatch'*/[0m
+  [1m[35m (269.5ms)[0m  [1m[35mCREATE DATABASE "lanka_match_development" ENCODING = 'unicode' /*application='LankaMatch'*/[0m
+  [1m[35mSQL (0.0ms)[0m  [1m[35mSET search_path TO public /*application='LankaMatch'*/[0m
+  [1m[35m (62.6ms)[0m  [1m[35mCREATE DATABASE "lanka_match_test" ENCODING = 'unicode' /*application='LankaMatch'*/[0m
+  [1m[35m (6.8ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" character varying NOT NULL PRIMARY KEY) /*application='LankaMatch'*/[0m
+  [1m[35m (2.2ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" character varying NOT NULL PRIMARY KEY, "value" character varying, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL) /*application='LankaMatch'*/[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT pg_try_advisory_lock(3603969183150663810) /*application='LankaMatch'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='LankaMatch'*/[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.7ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = 'environment' ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1 /*application='LankaMatch'*/[0m
+  [1m[36mActiveRecord::InternalMetadata Create (0.8ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ('environment', 'development', '2026-03-14 04:09:03.703441', '2026-03-14 04:09:03.703443') RETURNING "key" /*application='LankaMatch'*/[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT pg_advisory_unlock(3603969183150663810) /*application='LankaMatch'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='LankaMatch'*/[0m
