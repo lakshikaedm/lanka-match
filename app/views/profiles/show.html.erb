@@ -1,2 +1,9 @@
-<h1>Profiles#show</h1>
-<p>Find me in app/views/profiles/show.html.erb</p>
+<h1><%= @profile.display_name %></h1>
+
+<p><strong>Birth date:</strong> <%= @profile.birth_date %></p>
+<p><strong>Gender:</strong> <%= @profile.gender.humanize %></p>
+<p><strong>Location:</strong> <%= @profile.location %></p>
+<p><strong>Bio:</strong> <%= @profile.bio %></p>
+<p><strong>Occupation:</strong> <%= @profile.occupation %></p>
+
+<%= link_to "Edit profile", edit_profile_path %>
