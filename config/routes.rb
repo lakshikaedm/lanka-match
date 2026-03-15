@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
-  get "home/index"
   devise_for :users
+  resource :profile, only: %i[show new create edit update]
 
   root "home#index"
 
