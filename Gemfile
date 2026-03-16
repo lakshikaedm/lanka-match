@@ -21,8 +21,16 @@ gem "tzinfo-data", platforms: %i[ windows jruby ]
 
 group :development, :test do
   gem "brakeman", require: false
-  gem "debug", platforms: %i[ mri windows ], require: "debug/prelude"
+  gem "debug", platforms: %i[mri windows]
+  gem "dotenv-rails"
+  gem "factory_bot_rails", "~> 6.5"
+  gem "rspec-rails", "~> 7.1"
+
+  gem "rubocop", require: false
   gem "rubocop-rails-omakase", require: false
+  gem "rubocop-rspec", require: false
+  gem "rubocop-factory_bot", require: false
+  gem "rubocop-capybara", require: false
 end
 
 group :development do
@@ -31,6 +39,8 @@ end
 
 group :test do
   gem "capybara"
-  gem "minitest", "< 6"
+  gem "faker", "~> 3.5"
   gem "selenium-webdriver"
+  gem "shoulda-matchers", "~> 5.3"
+  gem "webmock", require: false
 end
