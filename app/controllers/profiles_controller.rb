@@ -13,14 +13,15 @@ class ProfilesController < ApplicationController
   def create
     if current_user.profile.present?
       redirect_to profile_path, notice: "Profile already exists."
-    else
-      @profile = current_user.build_profile(profile_params)
+      return
     end
+
+    @profile = current_user.build_profile(profile_params)
 
     if @profile.save
       redirect_to profile_path, notice: "Profile created successfully."
     else
-      render :new, status: :unprocessable_entity
+      render :new, status: :unprocessable_content
     end
   end
 
@@ -31,7 +32,7 @@ class ProfilesController < ApplicationController
     if @profile.update(profile_params)
       redirect_to profile_path, notice: "Profile updated successfully."
     else
-      render :edit, status: :unprocessable_entity
+      render :edit, status: :unprocessable_content
     end
   end
 
@@ -42,6 +43,7 @@ class ProfilesController < ApplicationController
 
   def set_profile
     @profile = current_user.profile
+    redirect_to new_profile_path, notice: "Please create your profile first." if @profile.blank?
   end
 
   def profile_params
