@@ -9,4 +9,11 @@ class Profile < ApplicationRecord
   validates :location, presence: true, length: { maximum: 100 }
   validates :bio, length: { maximum: 500 }, allow_blank: true
   validates :occupation, length: { maximum: 100 }, allow_blank: true
+
+  def age
+    today = Date.current
+    age = today.year - birth_date.year
+    age -= 1 if today < birth_date + age.years
+    age
+  end
 end
