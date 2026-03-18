@@ -1,0 +1,17 @@
+<h1>Browse Profiles</h1>
+
+<% if @profiles.any? %>
+  <% @profiles.each do |profile| %>
+    <div>
+      <h2><%= link_to profile.display_name, public_profile_path(profile) %></h2>
+      <p>Age: <%= profile.age %></p>
+      <p>Gender: <%= profile.gender.humanize %></p>
+      <p>Location: <%= profile.location %></p>
+      <p>Occupation: <%= profile.occupation %></p>
+      <p><%= truncate(profile.bio, length: 100, separator: ' ' ) %></p>
+    </div>
+    <hr>
+  <% end %>
+<% else %>
+  <p>No profiles available yet.</p>
+<% end %>

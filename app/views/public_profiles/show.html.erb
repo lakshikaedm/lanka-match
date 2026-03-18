@@ -1,0 +1,9 @@
+<h1><%= @profile.display_name %>'s profile</h1>
+
+<p>Age: <%= @profile.age %></p>
+<p>Gender: <%= @profile.gender.humanize %></p>
+<p>Location: <%= @profile.location %></p>
+<p>Occupation: <%= @profile.occupation %></p>
+<p>Bio: <%= @profile.bio %></p>
+
+<p><%= link_to "Back to Browse", public_profiles_path %></p>
