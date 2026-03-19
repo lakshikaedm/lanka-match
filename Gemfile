@@ -24,7 +24,7 @@ group :development, :test do
   gem "debug", platforms: %i[mri windows]
   gem "dotenv-rails"
   gem "factory_bot_rails", "~> 6.5"
-  gem "rspec-rails", "~> 7.1"
+  gem "rspec-rails", "~> 8.0"
 
   gem "rubocop", require: false
   gem "rubocop-rails-omakase", require: false
