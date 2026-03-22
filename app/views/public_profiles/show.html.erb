@@ -6,4 +6,12 @@
 <p>Occupation: <%= @profile.occupation %></p>
 <p>Bio: <%= @profile.bio %></p>
 
+<% if user_signed_in? && current_user != @profile.user %>
+  <% unless current_user.given_likes.exists?(liked: @profile.user) %>
+    <%= button_to "Like",
+        public_profile_like_path(@profile),
+        method: :post %>
+  <% end %>
+<% end %>
+
 <p><%= link_to "Back to Browse", public_profiles_path %></p>
