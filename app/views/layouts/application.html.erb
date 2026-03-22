@@ -41,6 +41,14 @@
         <%= link_to "Log in", new_user_session_path %>
       <% end %>
 
+      <% if notice %>
+        <p><%= notice %></p>
+      <% end %>
+
+      <% if alert %>
+        <p><%= alert %></p>
+      <% end %>
+
       <%= link_to "Browse Profiles", public_profiles_path %>
     </nav>
     <%= yield %>
