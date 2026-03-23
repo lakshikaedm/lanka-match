@@ -69,4 +69,57 @@ RSpec.describe "Likes", type: :request do
       end
     end
   end
+
+  describe "DELETE /profiles/:public_profile_id/like" do
+    context "when user is not signed in" do
+      it "redirects to sign in" do
+        delete public_profile_like_path(other_profile)
+
+        expect(response).to redirect_to(new_user_session_path)
+      end
+    end
+
+    context "when signed in" do
+      before { sign_in user }
+
+      context "when like exists" do
+        let!(:like) { create(:like, liker: user, liked: other_user) }
+
+        it "removes the like" do
+          expect do
+            delete public_profile_like_path(other_profile)
+          end.to change(Like, :count).by(-1)
+
+          expect(response).to redirect_to (public_profile_path(other_profile))
+          expect(flash[:notice]).to eq("Removed like successfully.")
+        end
+      end
+
+      context "when like does not exists" do
+        it "does not crash and shows alert" do
+          expect do
+            delete public_profile_like_path(other_profile)
+          end.not_to change(Like, :count)
+
+          expect(response).to redirect_to(public_profile_path(other_profile))
+          expect(flash[:alert]).to be_present
+        end
+      end
+
+      context "when signed in without a profile" do
+        let(:user_without_profile) { create(:user) }
+
+        before { sign_in user_without_profile }
+
+        it "redirects to profile creation" do
+          expect do
+            delete public_profile_like_path(other_profile)
+          end.not_to change(Like, :count)
+
+          expect(response).to redirect_to(new_profile_path)
+          expect(flash[:alert]).to be_present
+        end
+      end
+    end
+  end
 end
