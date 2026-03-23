@@ -6,7 +6,7 @@ Rails.application.routes.draw do
 
   resource :profile, only: %i[show new create edit update]
   resources :profiles, only: %i[index show], controller: "public_profiles", as: :public_profiles do
-    resource :like, only: :create
+    resource :like, only: %i[create destroy]
   end
 
   get "up" => "rails/health#show", as: :rails_health_check
