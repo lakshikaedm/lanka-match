@@ -11,8 +11,10 @@
       <p><%= truncate(profile.bio, length: 100, separator: ' ' ) %></p>
     </div>
     <% if user_signed_in? && current_user != profile.user %>
-      <% if current_user.given_likes.exists?(liked: profile.user) %>
-        <%= button_tag "Liked", disabled: true %>
+      <% if @liked_user_ids.include?(profile.user_id) %>
+        <%= button_to "Unlike",
+            public_profile_like_path(profile),
+            method: :delete %>
       <% else %>
         <%= button_to "Like",
             public_profile_like_path(profile),
