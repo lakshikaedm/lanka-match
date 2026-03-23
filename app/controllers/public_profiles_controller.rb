@@ -5,22 +5,23 @@ class PublicProfilesController < ApplicationController
 
   def index
     @profiles = Profile.
-      includes(:user).
-      where.not(user_id: current_user.id).
-      order(created_at: :desc)
+                includes(:user).
+                where.not(user_id: current_user.id).
+                order(created_at: :desc)
+    @liked_user_ids = user_signed_in? ?
+                      current_user.
+                      given_likes.pluck(:liked_id).
+                      to_set : Set.new
   end
 
   def show
+    @profile = Profile.find(params[:id])
+    @liked   = user_signed_in? && current_user.given_likes.exists?(liked: @profile.user)
   end
 
   private
 
   def set_profile
     @profile = Profile.find(params[:id])
-  end
-
-  def ensure_profile!
-    return if current_user.profile.present?
-    redirect_to new_profile_path, alert: "Please create your profile to start browsing others."
   end
 end
