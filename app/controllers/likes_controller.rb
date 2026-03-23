@@ -1,16 +1,35 @@
 class LikesController < ApplicationController
   before_action :authenticate_user!
+  before_action :ensure_profile!
+  before_action :set_profile
 
   def create
-    return redirect_to new_profile_path, alert: "Please create your profile first." if current_user.profile.blank?
+    like = current_user.given_likes.build(liked: @profile.user)
 
-    profile = Profile.find(params[:public_profile_id])
-    liked_user = profile.user
-    like = current_user.given_likes.build(liked: liked_user)
+    if like.save
+      flash[:notice] = "Liked successfully."
+    else
+      flash[:alert] = like.errors.full_messages.to_sentence
+    end
 
-    message_key = like.save ? :notice : :alert
-    message     = like.save ? "Liked successfully." : like.errors.full_messages.to_sentence
+    redirect_back fallback_location: public_profile_path(@profile)
+  end
 
-    redirect_back fallback_location: public_profile_path(profile), message_key => message
+  def destroy
+    like = current_user.given_likes.find_by(liked: @profile.user)
+
+    if like&.destroy
+      flash[:notice] = "Removed like successfully."
+    else
+      flash[:alert] = "Could not remove like."
+    end
+
+    redirect_back fallback_location: public_profile_path(@profile)
+  end
+
+  private
+
+  def set_profile
+    @profile = Profile.find(params[:public_profile_id])
   end
 end
