@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2026_03_20_085836) do
+ActiveRecord::Schema[8.0].define(version: 2026_05_09_004126) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -22,6 +22,17 @@ ActiveRecord::Schema[8.0].define(version: 2026_03_20_085836) do
     t.index ["liked_id"], name: "index_likes_on_liked_id"
     t.index ["liker_id", "liked_id"], name: "index_likes_on_liker_id_and_liked_id", unique: true
     t.index ["liker_id"], name: "index_likes_on_liker_id"
+  end
+
+  create_table "matches", force: :cascade do |t|
+    t.bigint "user_one_id", null: false
+    t.bigint "user_two_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_one_id", "user_two_id"], name: "index_matches_on_user_one_id_and_user_two_id", unique: true
+    t.index ["user_one_id"], name: "index_matches_on_user_one_id"
+    t.index ["user_two_id"], name: "index_matches_on_user_two_id"
+    t.check_constraint "user_one_id < user_two_id", name: "user_order_check"
   end
 
   create_table "profiles", force: :cascade do |t|
@@ -51,5 +62,7 @@ ActiveRecord::Schema[8.0].define(version: 2026_03_20_085836) do
 
   add_foreign_key "likes", "users", column: "liked_id"
   add_foreign_key "likes", "users", column: "liker_id"
+  add_foreign_key "matches", "users", column: "user_one_id"
+  add_foreign_key "matches", "users", column: "user_two_id"
   add_foreign_key "profiles", "users"
 end
