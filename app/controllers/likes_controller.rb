@@ -7,29 +7,34 @@ class LikesController < ApplicationController
     like = current_user.given_likes.build(liked: @profile.user)
 
     if like.save
-      flash[:notice] = "Liked successfully."
+      message = create_match_if_mutual_like ? "It's a match!" : "Liked successfully."
+      redirect_back fallback_location: public_profile_path(@profile), notice: message
     else
-      flash[:alert] = like.errors.full_messages.to_sentence
+      redirect_back fallback_location: public_profile_path(@profile), alert: like.errors.full_messages.to_sentence
     end
-
-    redirect_back fallback_location: public_profile_path(@profile)
   end
 
   def destroy
     like = current_user.given_likes.find_by(liked: @profile.user)
 
     if like&.destroy
-      flash[:notice] = "Removed like successfully."
+      Match.find_between(current_user, @profile.user)&.destroy
+      redirect_back fallback_location: public_profile_path(@profile), notice: "Removed like successfully."
     else
-      flash[:alert] = "Could not remove like."
+      redirect_back fallback_location: public_profile_path(@profile), alert: "Like not found."
     end
-
-    redirect_back fallback_location: public_profile_path(@profile)
   end
 
   private
 
   def set_profile
     @profile = Profile.find(params[:public_profile_id])
+  end
+
+  def create_match_if_mutual_like
+    return false unless @profile.user.given_likes.exists?(liked: current_user)
+
+    Match.create_between(current_user, @profile.user)
+    true
   end
 end

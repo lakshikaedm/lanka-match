@@ -52,6 +52,20 @@ RSpec.describe "Likes", type: :request do
         expect(response).to redirect_to(public_profile_path(other_profile))
         expect(flash[:alert]).to be_present
       end
+
+      it "does not create a match when the like is not mutual" do
+        expect {
+          post public_profile_like_path(other_profile)
+        }.not_to change(Match, :count)
+      end
+
+      it "creates a match when the like is mutual" do
+        create(:like, liker: other_user, liked: user)
+
+        expect {
+          post public_profile_like_path(other_profile)
+        }.to change(Match, :count).by(1)
+      end
     end
 
     context "when signed in without a profile" do
@@ -92,6 +106,14 @@ RSpec.describe "Likes", type: :request do
 
           expect(response).to redirect_to (public_profile_path(other_profile))
           expect(flash[:notice]).to eq("Removed like successfully.")
+        end
+
+        it "removes the match" do
+          Match.create_between(user, other_user)
+
+          expect {
+            delete public_profile_like_path(other_profile)
+          }.to change(Match, :count). by(-1)
         end
       end
 
