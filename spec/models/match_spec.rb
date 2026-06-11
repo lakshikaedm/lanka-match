@@ -4,6 +4,7 @@ RSpec.describe Match, type: :model do
   describe "associations" do
     it { is_expected.to belong_to(:user_one).class_name("User") }
     it { is_expected.to belong_to(:user_two).class_name("User") }
+    it { is_expected.to have_one(:conversation).dependent(:destroy) }
   end
 
   describe "validations" do
@@ -83,4 +84,13 @@ RSpec.describe Match, type: :model do
       end
     end
   end
+
+  describe "callbacks" do
+  it "creates a conversation after match is created" do
+    match = create(:match)
+
+    expect(match.conversation).to be_present
+    expect(match.conversation).to be_active
+  end
+end
 end
