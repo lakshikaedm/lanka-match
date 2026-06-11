@@ -2,6 +2,9 @@ class Match < ApplicationRecord
   belongs_to :user_one, class_name: "User"
   belongs_to :user_two, class_name: "User"
 
+  has_one :conversation, dependent: :destroy
+  after_create :create_conversation
+
   validates :user_one_id, uniqueness: { scope: :user_two_id }
   validate :users_must_be_different
   validate :ordered_user_pair
