@@ -15,4 +15,9 @@ class User < ApplicationRecord
             foreign_key: "liked_id",
             dependent: :destroy,
             inverse_of: :liked
+
+  has_many :sent_messages,
+            class_name: "Message",
+            foreign_key: :sender_id,
+            dependent: :nullify
 end

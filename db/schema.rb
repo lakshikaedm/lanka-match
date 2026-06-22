@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2026_06_11_101449) do
+ActiveRecord::Schema[8.0].define(version: 2026_06_22_114518) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -43,6 +43,17 @@ ActiveRecord::Schema[8.0].define(version: 2026_06_11_101449) do
     t.check_constraint "user_one_id < user_two_id", name: "user_order_check"
   end
 
+  create_table "messages", force: :cascade do |t|
+    t.bigint "conversation_id", null: false
+    t.bigint "sender_id", null: false
+    t.text "body", null: false
+    t.datetime "read_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["conversation_id"], name: "index_messages_on_conversation_id"
+    t.index ["sender_id"], name: "index_messages_on_sender_id"
+  end
+
   create_table "profiles", force: :cascade do |t|
     t.bigint "user_id", null: false
     t.string "display_name"
@@ -73,5 +84,7 @@ ActiveRecord::Schema[8.0].define(version: 2026_06_11_101449) do
   add_foreign_key "likes", "users", column: "liker_id"
   add_foreign_key "matches", "users", column: "user_one_id"
   add_foreign_key "matches", "users", column: "user_two_id"
+  add_foreign_key "messages", "conversations"
+  add_foreign_key "messages", "users", column: "sender_id"
   add_foreign_key "profiles", "users"
 end

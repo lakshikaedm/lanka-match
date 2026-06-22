@@ -1,5 +1,6 @@
 class Conversation < ApplicationRecord
   belongs_to :match
+  has_many :messages, dependent: :destroy
 
   enum :status, { active: 0, closed: 1 }
 
