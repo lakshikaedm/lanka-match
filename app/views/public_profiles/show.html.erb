@@ -16,6 +16,12 @@
         public_profile_like_path(@profile),
         method: :post %>
   <% end %>
+
+  <% match = Match.find_between(current_user, @profile.user) %>
+
+  <% if match&.conversation.present? %>
+    <%= link_to "Chat", conversation_path(match.conversation) %>
+  <% end %>
 <% end %>
 
 <p><%= link_to "Back to Browse", public_profiles_path %></p>

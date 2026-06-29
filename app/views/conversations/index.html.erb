@@ -1,0 +1,19 @@
+<h1>Chats</h1>
+
+<% if @conversations.any? %>
+  <% @conversations.each do |conversation| %>
+    <% other_user = conversation.match.other_user(current_user) %>
+
+    <div>
+      <p>
+        <strong><%= other_user.email %></strong>
+      </p>
+
+      <%= link_to "Open Chat", conversation_path(conversation) %>
+    </div>
+
+    <hr>
+  <% end %>
+<% else %>
+  <p>No chats yet.</p>
+<% end %>

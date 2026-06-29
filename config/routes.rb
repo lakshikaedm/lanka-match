@@ -8,6 +8,9 @@ Rails.application.routes.draw do
   resources :profiles, only: %i[index show], controller: "public_profiles", as: :public_profiles do
     resource :like, only: %i[create destroy]
   end
+  resources :conversations, only: [ :index, :show ] do
+    resources :messages, only: [ :create ]
+  end
 
   get "up" => "rails/health#show", as: :rails_health_check
 end
