@@ -1,0 +1,29 @@
+.app {
+  width: 100%;
+  min-height: 100vh;
+}
+
+.app-container {
+  width: 100%;
+  max-width: 768px;
+  min-height: 100vh;
+  margin: 0 auto;
+  padding: 12px;
+}
+
+.main-content {
+  padding-top: 16px;
+  padding-bottom: 80px;
+}
+
+@media (min-width: 480px) {
+  .app-container {
+    padding: 20px;
+  }
+}
+
+@media (min-width: 768px) {
+  .app-container {
+    padding: 24px;
+  }
+}

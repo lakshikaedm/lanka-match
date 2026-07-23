@@ -1,0 +1,35 @@
+<section class="auth-page">
+  <div class="auth-card">
+    <header class="auth-header">
+      <h2>Log in</h2>
+      <p class="auth-subtitle">Welcome back to Lanka Match</p>
+    </header>
+
+    <%= form_for(resource, as: resource_name, url: session_path(resource_name), html: { class: "auth-form" }) do |f| %>
+      <div class="form-group">
+        <%= f.label :email, class: "form-label" %>
+        <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-input", placeholder: "you@example.com" %>
+      </div>
+
+      <div class="form-group">
+        <%= f.label :password, class: "form-label" %>
+        <%= f.password_field :password, autocomplete: "current-password", class: "form-input", placeholder: "Enter your password" %>
+      </div>
+
+      <% if devise_mapping.rememberable? %>
+        <div class="form-checkbox">
+          <%= f.check_box :remember_me, checked: true, class: "form-checkbox-input" %>
+          <%= f.label :remember_me, class: "form-checkbox-label" %>
+        </div>
+      <% end %>
+
+      <div class="form-actions">
+        <%= f.submit "Log in", class: "button button--primary button--full" %>
+      </div>
+    <% end %>
+
+    <div class="auth-links">
+      <%= render "devise/shared/links" %>
+    </div>
+  </div>
+</section>

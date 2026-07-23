@@ -23,35 +23,33 @@
   </head>
 
   <body>
-    <%# Navbar => later move to partial %>
-    <nav>
-      <% if user_signed_in? %>
-        <span><%= current_user.email %></span>
+    <div class="app">
+      <div class="app-container">
+        <%= render "shared/navbar" %>
 
-        <% if current_user.profile.present? %>
-          <%= link_to "My Profile", profile_path %>
-          <%= link_to "Edit Profile", edit_profile_path %>
-        <% else %>
-          <%= link_to "Create Profile", new_profile_path %>
+        <% flash.each do |type, message| %>
+          <% css_class = case type.to_sym
+                        when :notice
+                          "notice"
+                        when :alert
+                          "error"
+                        when :success
+                          "success"
+                        when :error
+                          "error"
+                        else
+                          "notice"
+                        end %>
+
+          <div class="flash-message flash-message--<%= css_class %>">
+            <%= message %>
+          </div>
         <% end %>
-        <%= link_to "Chats", conversations_path %>
-      
-        <%= link_to "Log out", destroy_user_session_path, data: { turbo_method: :delete } %>
-      <% else %>
-        <%= link_to "Sign up", new_user_registration_path %>
-        <%= link_to "Log in", new_user_session_path %>
-      <% end %>
 
-      <% if notice %>
-        <p><%= notice %></p>
-      <% end %>
-
-      <% if alert %>
-        <p><%= alert %></p>
-      <% end %>
-
-      <%= link_to "Browse Profiles", public_profiles_path %>
-    </nav>
-    <%= yield %>
+        <main class="main-content">
+          <%= yield %>
+        </main>
+      </div>
+    </div>
   </body>
 </html>

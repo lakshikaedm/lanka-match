@@ -1,0 +1,110 @@
+.flash-message {
+  padding: 0.5rem;
+  border-radius: 12px;
+  margin: 10px;
+}
+
+.flash-message--success {
+  background: #6655ea;
+  color: white;
+}
+
+.flash-message--error {
+  background: rgb(242, 47, 47);
+  color: white;
+}
+
+.flash-message--notice {
+  background: rgb(248, 248, 83);
+  color: rgb(18, 2, 2);
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.form-label {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #f3edef;
+}
+
+.form-input {
+  width: 100%;
+  min-height: 48px;
+  padding: 12px 14px;
+  border: 1px solid #493639;
+  border-radius: 10px;
+  background: #170f10;
+  color: white;
+  font-size: 1rem;
+}
+
+.form-input::placeholder {
+  color: #817477;
+}
+
+.form-input:focus {
+  border-color: #d94d68;
+  outline: 2px solid rgb(217 77 104 / 20%);
+  outline-offset: 1px;
+}
+
+.form-checkbox {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.form-checkbox-input {
+  width: 18px;
+  height: 18px;
+  margin: 0;
+}
+
+.form-checkbox-label {
+  font-size: 0.9rem;
+}
+
+.form-actions {
+  margin-top: 4px;
+}
+
+.button {
+  min-height: 48px;
+  padding: 12px 18px;
+  border: 0;
+  border-radius: 10px;
+  font: inherit;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.button--primary {
+  background: #d94d68;
+  color: white;
+}
+
+.button--primary:hover {
+  background: #c63d58;
+}
+
+button--full {
+  width: 100%;
+}
+
+/* Mobile adjustment */
+
+@media (max-width: 479px) {
+  .auth-page {
+    align-items: flex-start;
+    padding-top: 16px;
+  }
+
+  .auth-card {
+    padding: 20px 16px;
+    border-radius: 14px;
+  }
+}
