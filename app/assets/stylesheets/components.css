@@ -31,6 +31,13 @@
   color: #f3edef;
 }
 
+.form-hint {
+  display: block;
+  margin-top: 4px;
+  font-size: 0.85rem;
+  color: #9f9496;
+}
+
 .form-input {
   width: 100%;
   min-height: 48px;
