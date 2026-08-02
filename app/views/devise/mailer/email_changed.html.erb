@@ -1,7 +1,42 @@
-<p>Hello <%= @email %>!</p>
+<div style="max-width:600px;margin:40px auto;padding:32px;background:#ffffff;border:1px solid #e5e5e5;border-radius:12px;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;color:#333333;line-height:1.6;">
 
-<% if @resource.try(:unconfirmed_email?) %>
-  <p>We're contacting you to notify you that your email is being changed to <%= @resource.unconfirmed_email %>.</p>
-<% else %>
-  <p>We're contacting you to notify you that your email has been changed to <%= @resource.email %>.</p>
-<% end %>
+  <h1 style="margin:0 0 24px;font-size:28px;font-weight:700;color:#222222;">
+    Email Address Updated
+  </h1>
+
+  <p style="margin:0 0 16px;">
+    Hello <strong><%= @email %></strong>,
+  </p>
+
+  <% if @resource.try(:unconfirmed_email?) %>
+    <p style="margin:0 0 16px;">
+      We received a request to change the email address for your <strong>Lanka Match</strong> account.
+    </p>
+
+    <p style="margin:0 0 24px;">
+      Your new email address will be:
+      <br>
+      <strong><%= @resource.unconfirmed_email %></strong>
+    </p>
+
+    <p style="margin:0;font-size:14px;color:#777777;">
+      The change will take effect after you confirm the new email address.
+    </p>
+  <% else %>
+    <p style="margin:0 0 16px;">
+      This is a confirmation that the email address for your
+      <strong>Lanka Match</strong> account has been updated.
+    </p>
+
+    <p style="margin:0 0 24px;">
+      Your current email address is:
+      <br>
+      <strong><%= @resource.email %></strong>
+    </p>
+
+    <p style="margin:0;font-size:14px;color:#777777;">
+      If you did not make this change, please reset your password immediately and contact support.
+    </p>
+  <% end %>
+
+</div>
