@@ -1,2 +1,12 @@
-<h1>Edit your Profile</h1>
-<%= render "form" %>
+<div class="profile-page">
+  <div class="profile-card">
+    <header class="profile-header">
+      <h1 class="profile-title">Edit your profile</h1>
+      <p class="profile-description">
+        Update your profile information.
+      </p>
+    </header>
+
+    <%= render "form", profile: @profile %>
+  </div>
+</div>

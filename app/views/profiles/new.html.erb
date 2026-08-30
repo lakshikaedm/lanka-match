@@ -1,2 +1,12 @@
-<h1>Create your Profile</h1>
-<%= render "form" %>
+<div class="profile-page">
+  <div class="profile-card">
+    <header class="profile-header">
+      <h2 class="profile-title">Create your profile</h2>
+      <p class="profile-description">
+        Tell people a little about yourself.
+      </p>
+    </header>
+
+    <%= render "form", profile: @profile %>
+  </div>
+</div>

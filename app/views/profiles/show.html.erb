@@ -1,9 +1,41 @@
-<h1><%= @profile.display_name %></h1>
+<div class="profile-show-page">
+  <article class="profile-show-card">
+    <header class="profile-show-header">
+      <div>
+        <h1 class="profile-show-name"><%= @profile.display_name %></h1>
+        <p class="profile-show-summary">
+          <%= @profile.occupation.presence || "Occupation not added" %>
+          <% if @profile.location.present? %>
+            <span aria-hidden="true"> . </span>
+            <%= @profile.location %>
+          <% end %>
+        </p>
+      </div>
 
-<p><strong>Birth date:</strong> <%= @profile.birth_date %></p>
-<p><strong>Gender:</strong> <%= @profile.gender.humanize %></p>
-<p><strong>Location:</strong> <%= @profile.location %></p>
-<p><strong>Bio:</strong> <%= @profile.bio %></p>
-<p><strong>Occupation:</strong> <%= @profile.occupation %></p>
+      <%= link_to "Edit profile", edit_profile_path, class: "button button--secondary" %>
+    </header>
 
-<%= link_to "Edit profile", edit_profile_path %>
+    <dl class="profile-details">
+      <div class="profile-detail">
+        <dt class="profile-detail-label">Age</dt>
+        <dd class="profile-detail-value">
+          <%= @profile.age || "Age not added" %>
+        </dd>
+      </div>
+
+      <div class="profile-details">
+        <dt class="profile-detail-label">Location</dt>
+        <dd class="profile-detail-value">
+          <%= @profile.occupation.presence || "Not added" %>
+        </dd>
+      </div>
+    </dl>
+    <section class="profile-bio">
+      <h2 class="profile-bio-title">About me</h2>
+
+      <p class="profile-bio-text">
+        <%= @profile.bio.presence || "No bio added yet" %>
+      </p>
+    </section>
+  </article>
+</div>

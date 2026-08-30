@@ -11,6 +11,8 @@ class Profile < ApplicationRecord
   validates :occupation, length: { maximum: 100 }, allow_blank: true
 
   def age
+    return if birth_date.blank?
+
     today = Date.current
     age = today.year - birth_date.year
     age -= 1 if today < birth_date + age.years

@@ -76,7 +76,7 @@
 }
 
 .form-actions {
-  margin-top: 4px;
+  margin-top: 8px;
 }
 
 .button {
@@ -98,20 +98,17 @@
   background: #c63d58;
 }
 
-button--full {
+.button--full {
   width: 100%;
 }
 
-/* Mobile adjustment */
+.button--secondary {
+  color: #f3edef;
+  background: transparent;
+  border: 1px solid #65464d;
+  text-decoration: none;
+}
 
-@media (max-width: 479px) {
-  .auth-page {
-    align-items: flex-start;
-    padding-top: 16px;
-  }
-
-  .auth-card {
-    padding: 20px 16px;
-    border-radius: 14px;
-  }
+.button--secondary:hover {
+  background: #342326;
 }

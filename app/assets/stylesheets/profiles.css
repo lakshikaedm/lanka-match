@@ -1,0 +1,154 @@
+.profile-form-page {
+  width: 100%;
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 24px 16px 96px;
+}
+
+.profile-form-card {
+  padding: 24px 18px;
+  background: #211719;
+  border: 1px solid #3a292d;
+  border-radius: 18px;
+}
+
+.profile-form-header {
+  margin-bottom: 28px;
+}
+
+.profile-form-title {
+  margin: 0 0 8px;
+  font-size: 1.6rem;
+  line-height: 1.2;
+}
+
+.profile-form-description {
+  margin: 0;
+  color: #bcaeb1;
+  font-size: 0.95rem;
+  line-height: 1.5;
+}
+
+.profile-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.form-textarea {
+  min-height: 130px;
+  resize: vertical;
+  line-height: 1.5;
+}
+
+.form-select {
+  cursor: pointer;
+}
+
+.profile-show-page {
+  width: 100%;
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 24px 16px 96px;
+}
+
+.profile-show-card {
+  padding: 24px 18px;
+  background: #211719;
+  border: 1px solid #3a292d;
+  border-radius: 18px;
+}
+
+.profile-show-header {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 18px;
+  padding-bottom: 22px;
+  border-bottom: 1px solid #3a292d;
+}
+
+.profile-show-name {
+  margin: 0;
+  color: #fff;
+  font-size: 1.8rem;
+  line-height: 1.2;
+  overflow-wrap: anywhere;
+}
+
+.profile-show-summary {
+  margin: 8px 0 0;
+  color: #bcaeb1;
+  font-size: 0.95rem;
+  line-height: 1.5;
+}
+
+.profile-details {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0;
+  margin: 0;
+}
+
+.profile-detail {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  padding: 16px 0;
+  border-bottom: 1px solid #3a292d;
+}
+
+.profile-detail-label {
+  color: #9f9496;
+  font-size: 0.9rem;
+}
+
+.profile-detail-value {
+  margin: 0;
+  color: #f3edef;
+  font-weight: 600;
+  text-align: right;
+  overflow-wrap: anywhere;
+}
+
+.profile-bio {
+  padding-top: 24px;
+}
+
+.profile-bio-title {
+  margin: 0 0 12px;
+  color: #fff;
+  font-size: 1.1rem;
+}
+
+.profile-bio-text {
+  margin: 0;
+  color: #d6cbcd;
+  line-height: 1.7;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+
+.button @media (min-width: 600px) {
+  .profile-form-page {
+    padding-top: 40px;
+  }
+
+  .profile-form-card {
+    padding: 32px;
+  }
+
+  .profile-show-page {
+    padding-top: 40px;
+  }
+
+  .profile-show-card {
+    padding: 32px;
+  }
+
+  .profile-show-header {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+  }
+}

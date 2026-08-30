@@ -47,3 +47,17 @@
   display: inline-block;
   margin-top: 10px;
 }
+
+/* Mobile adjustment */
+
+@media (max-width: 479px) {
+  .auth-page {
+    align-items: flex-start;
+    padding-top: 16px;
+  }
+
+  .auth-card {
+    padding: 20px 16px;
+    border-radius: 14px;
+  }
+}

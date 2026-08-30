@@ -30,7 +30,7 @@ RSpec.describe "Likes", type: :request do
         end.to change(Like, :count).by(1)
 
         expect(response).to redirect_to(public_profile_path(other_profile))
-        expect(flash[:notice]).to eq("Liked successfully.")
+        expect(flash[:success]).to eq("Liked successfully.")
       end
 
       it "does not allow liking self" do
@@ -105,7 +105,7 @@ RSpec.describe "Likes", type: :request do
           end.to change(Like, :count).by(-1)
 
           expect(response).to redirect_to (public_profile_path(other_profile))
-          expect(flash[:notice]).to eq("Removed like successfully.")
+          expect(flash[:alert]).to eq("Removed like successfully.")
         end
 
         it "removes the match" do
