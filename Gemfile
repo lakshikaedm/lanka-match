@@ -41,6 +41,6 @@ group :test do
   gem "capybara"
   gem "faker", "~> 3.5"
   gem "selenium-webdriver"
-  gem "shoulda-matchers", "~> 5.3"
+  gem "shoulda-matchers", "~> 7.0"
   gem "webmock", require: false
 end
