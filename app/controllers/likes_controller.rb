@@ -7,10 +7,21 @@ class LikesController < ApplicationController
     like = current_user.given_likes.build(liked: @profile.user)
 
     if like.save
-      message = create_match_if_mutual_like ? "It's a match!" : "Liked successfully."
-      redirect_back fallback_location: public_profile_path(@profile), flash: { success: message }
+      if create_match_if_mutual_like
+        redirect_back(
+          fallback_location: public_profile_path(@profile),
+          flash: { success: "Match!!" }
+        )
+      else
+        redirect_back(
+          fallback_location: public_profile_path(@profile)
+        )
+      end
     else
-      redirect_back fallback_location: public_profile_path(@profile), alert: like.errors.full_messages.to_sentence
+      redirect_back(
+        fallback_location: public_profile_path(@profile),
+        alert: like.errors.full_messages.to_sentence
+      )
     end
   end
 
@@ -19,9 +30,9 @@ class LikesController < ApplicationController
 
     if like&.destroy
       Match.find_between(current_user, @profile.user)&.destroy
-      redirect_back fallback_location: public_profile_path(@profile), alert: "Removed like successfully."
+      redirect_back fallback_location: public_profile_path(@profile)
     else
-      redirect_back fallback_location: public_profile_path(@profile), alert: "Like not found."
+      redirect_back fallback_location: public_profile_path(@profile)
     end
   end
 
