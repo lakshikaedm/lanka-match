@@ -16,7 +16,14 @@ class PublicProfilesController < ApplicationController
 
   def show
     @profile = Profile.find(params[:id])
-    @liked   = user_signed_in? && current_user.given_likes.exists?(liked: @profile.user)
+
+    @liked =
+      user_signed_in? &&
+      current_user.given_likes.exists?(liked: @profile.user)
+
+    if user_signed_in? && current_user != @profile.user
+      @match = Match.find_between(current_user, @profile.user)
+    end
   end
 
   private

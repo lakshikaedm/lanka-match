@@ -1,27 +1,69 @@
-<h1><%= @profile.display_name %>'s profile</h1>
+<div class="public-profile-show-page">
+  <article class="public-profile-show-card public-profile-show-card--<%= @profile.gender %>">
 
-<p>Age: <%= @profile.age %></p>
-<p>Gender: <%= @profile.gender.humanize %></p>
-<p>Location: <%= @profile.location %></p>
-<p>Occupation: <%= @profile.occupation %></p>
-<p>Bio: <%= @profile.bio %></p>
+    <div class="public-profile-show-photo">
+      <span>Photo</span>
+    </div>
 
-<% if user_signed_in? && current_user != @profile.user %>
-  <% if @liked %>
-    <%= button_to "Unlike",
-        public_profile_like_path(@profile),
-        method: :delete %>
-  <% else %>
-    <%= button_to "Like",
-        public_profile_like_path(@profile),
-        method: :post %>
-  <% end %>
+    <div class="public-profile-show-content">
+      <header class="public-profile-show-header">
+        <h1 class="public-profile-show-name">
+          <%= @profile.display_name %>, <%= @profile.age %>
+        </h1>
 
-  <% match = Match.find_between(current_user, @profile.user) %>
+        <p class="public-profile-show-location">
+          <%= @profile.location %>
+        </p>
+      </header>
 
-  <% if match&.conversation.present? %>
-    <%= link_to "Chat", conversation_path(match.conversation) %>
-  <% end %>
-<% end %>
+      <dl class="public-profile-show-details">
+        <div class="public-profile-show-detail">
+          <dt>Gender</dt>
+          <dd><%= @profile.gender.humanize %></dd>
+        </div>
 
-<p><%= link_to "Back to Browse", public_profiles_path %></p>
+        <div class="public-profile-show-detail">
+          <dt>Occupation</dt>
+          <dd><%= @profile.occupation.presence || "Not added" %></dd>
+        </div>
+      </dl>
+
+      <section class="public-profile-show-bio">
+        <h2>About me</h2>
+
+        <p>
+          <%= @profile.bio.presence || "No bio added yet." %>
+        </p>
+      </section>
+
+      <% if user_signed_in? && current_user != @profile.user %>
+        <div class="public-profile-show-actions">
+          <% if @liked %>
+            <%= button_to "Unlike",
+                          public_profile_like_path(@profile),
+                          method: :delete,
+                          class: "button button--secondary button--full" %>
+          <% else %>
+            <%= button_to "Like",
+                          public_profile_like_path(@profile),
+                          method: :post,
+                          class: "button button--primary button--full" %>
+          <% end %>
+
+          <% if @match&.conversation.present? %>
+            <%= link_to "Chat",
+                        conversation_path(@match.conversation),
+                        class: "button button--secondary button--full public-profile-chat-button" %>
+          <% end %>
+        </div>
+      <% end %>
+
+      <div class="public-profile-show-back">
+        <%= link_to "Back to Browse",
+                    public_profiles_path,
+                    class: "public-profile-back-link" %>
+      </div>
+    </div>
+
+  </article>
+</div>

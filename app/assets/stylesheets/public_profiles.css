@@ -1,0 +1,326 @@
+/* Browse page */
+
+.browse-page {
+  width: 100%;
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 24px 16px 96px;
+}
+
+.browse-header {
+  margin-bottom: 24px;
+}
+
+.browse-title {
+  margin: 0;
+  color: white;
+  font-size: 1.8rem;
+}
+
+/* Profile cards */
+
+.profile-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 20px;
+  align-items: stretch;
+}
+
+.public-profile-card {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  background: #211719;
+  border: 1px solid #686064;
+  border-radius: 16px;
+}
+
+/* Male - 6 blue border layers */
+
+.public-profile-card--male {
+  border-color: #4f8cff;
+
+  box-shadow:
+    0 0 0 1px #4f8cff,
+    0 0 0 2px #4f8cff,
+    0 0 0 3px #4f8cff,
+    0 0 0 4px #4f8cff,
+    0 0 0 5px #4f8cff;
+}
+
+/* Female - 6 pink border layers */
+
+.public-profile-card--female {
+  border-color: #e05c8d;
+
+  box-shadow:
+    0 0 0 1px #e05c8d,
+    0 0 0 2px #e05c8d,
+    0 0 0 3px #e05c8d,
+    0 0 0 4px #e05c8d,
+    0 0 0 5px #e05c8d;
+}
+
+/* Other - rainbow border */
+
+.public-profile-card--other {
+  border-color: #e53935;
+
+  box-shadow:
+    0 0 0 1px #fb8c00,
+    0 0 0 2px #fdd835,
+    0 0 0 3px #43a047,
+    0 0 0 4px #1e88e5,
+    0 0 0 5px #8e24aa;
+}
+
+.public-profile-card__link {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  color: inherit;
+  text-decoration: none;
+}
+
+.public-profile-card__photo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  aspect-ratio: 4 / 3;
+  background: #170f10;
+  color: #75686b;
+  font-size: 0.9rem;
+}
+
+.public-profile-card__content {
+  margin-top: auto;
+  padding: 16px 18px;
+}
+
+.public-profile-card__name {
+  margin: 0;
+  color: white;
+  font-size: 1.3rem;
+  line-height: 1.3;
+  overflow-wrap: anywhere;
+}
+
+.public-profile-card__meta {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin: 6px 0 0;
+  color: #a99c9f;
+  font-size: 0.95rem;
+}
+
+.public-profile-card__actions {
+  padding: 0 18px 18px;
+}
+
+.public-profile-card__actions form {
+  width: 100%;
+}
+
+/* Empty browse page */
+
+.browse-empty {
+  margin: 0;
+  padding: 40px 20px;
+  color: #a99c9f;
+  text-align: center;
+  background: #211719;
+  border: 1px solid #3a292d;
+  border-radius: 16px;
+}
+
+/* Public profile show page */
+
+.public-profile-show-page {
+  width: 100%;
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 24px 16px 96px;
+}
+
+.public-profile-show-card {
+  overflow: hidden;
+  background: #211719;
+  border: 1px solid #686064;
+  border-radius: 18px;
+}
+
+/* Male - 6 blue border layers */
+
+.public-profile-show-card--male {
+  border-color: #4f8cff;
+
+  box-shadow:
+    0 0 0 1px #4f8cff,
+    0 0 0 2px #4f8cff,
+    0 0 0 3px #4f8cff,
+    0 0 0 4px #4f8cff,
+    0 0 0 5px #4f8cff;
+}
+
+/* Female - 6 pink border layers */
+
+.public-profile-show-card--female {
+  border-color: #e05c8d;
+
+  box-shadow:
+    0 0 0 1px #e05c8d,
+    0 0 0 2px #e05c8d,
+    0 0 0 3px #e05c8d,
+    0 0 0 4px #e05c8d,
+    0 0 0 5px #e05c8d;
+}
+
+/* Other - rainbow border */
+
+.public-profile-show-card--other {
+  border-color: #e53935;
+
+  box-shadow:
+    0 0 0 1px #fb8c00,
+    0 0 0 2px #fdd835,
+    0 0 0 3px #43a047,
+    0 0 0 4px #1e88e5,
+    0 0 0 5px #8e24aa;
+}
+
+.public-profile-show-photo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  aspect-ratio: 4 / 3;
+  background: #170f10;
+  color: #75686b;
+  font-size: 0.9rem;
+}
+
+.public-profile-show-content {
+  padding: 20px;
+}
+
+.public-profile-show-header {
+  padding-bottom: 20px;
+  border-bottom: 1px solid #3a292d;
+}
+
+.public-profile-show-name {
+  margin: 0;
+  color: white;
+  font-size: 1.8rem;
+  line-height: 1.2;
+}
+
+.public-profile-show-location {
+  margin: 8px 0 0;
+  color: #a99c9f;
+  font-size: 1rem;
+}
+
+/* Details */
+
+.public-profile-show-details {
+  margin: 0;
+}
+
+.public-profile-show-detail {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  padding: 15px 0;
+  border-bottom: 1px solid #3a292d;
+}
+
+.public-profile-show-detail dt {
+  color: #95898b;
+  font-size: 0.9rem;
+}
+
+.public-profile-show-detail dd {
+  margin: 0;
+  color: #f3edef;
+  font-weight: 600;
+  text-align: right;
+  overflow-wrap: anywhere;
+}
+
+/* Bio */
+
+.public-profile-show-bio {
+  padding: 22px 0;
+}
+
+.public-profile-show-bio h2 {
+  margin: 0 0 10px;
+  color: white;
+  font-size: 1.1rem;
+}
+
+.public-profile-show-bio p {
+  margin: 0;
+  color: #d6cbcd;
+  line-height: 1.7;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+
+/* Like / Unlike / Chat */
+
+.public-profile-show-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.public-profile-show-actions form {
+  width: 100%;
+}
+
+.public-profile-chat-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+}
+
+/* Back link */
+
+.public-profile-show-back {
+  margin-top: 24px;
+  text-align: center;
+}
+
+.public-profile-back-link {
+  color: #a99c9f;
+  font-size: 0.9rem;
+  text-decoration: none;
+}
+
+.public-profile-back-link:hover {
+  color: white;
+}
+
+/* Tablet */
+
+@media (min-width: 600px) {
+  .browse-page {
+    padding-top: 40px;
+  }
+
+  .profile-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .public-profile-show-page {
+    padding-top: 40px;
+  }
+
+  .public-profile-show-content {
+    padding: 28px;
+  }
+}
