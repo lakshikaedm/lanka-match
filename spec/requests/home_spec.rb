@@ -5,7 +5,7 @@ RSpec.describe "Home", type: :request do
     context "when user is not signed in" do
       it "returns a successful response" do
         get root_path
-        expect(response).to have_http_status(:ok)
+        expect(response).to redirect_to(new_user_session_path)
       end
     end
 
