@@ -1,0 +1,201 @@
+/* Top navbar */
+
+.top-navbar {
+  width: 100%;
+  background: #170f10;
+  border-bottom: 1px solid #3a292d;
+}
+
+.top-navbar__inner {
+  display: flex;
+  align-items: center;
+
+  width: 100%;
+  max-width: 900px;
+  min-height: 64px;
+
+  margin: 0 auto;
+  padding: 10px 16px;
+}
+
+.top-navbar__brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+  color: white;
+  text-decoration: none;
+}
+
+.top-navbar__logo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 40px;
+  height: 40px;
+
+  flex-shrink: 0;
+
+  background: #211719;
+  border: 1px solid #493639;
+  border-radius: 10px;
+
+  color: #75686b;
+  font-size: 0.65rem;
+}
+
+.top-navbar__title {
+  color: white;
+  font-size: 1.25rem;
+  font-weight: 700;
+  line-height: 1;
+}
+
+/* Bottom navigation */
+
+.bottom-nav {
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  left: 0;
+
+  z-index: 1000;
+
+  background: #170f10;
+  border-top: 1px solid #3a292d;
+}
+
+.bottom-nav__inner {
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: 1fr;
+
+  width: 100%;
+  max-width: 900px;
+
+  margin: 0 auto;
+}
+
+.bottom-nav__item {
+  position: relative;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  gap: 4px;
+
+  min-height: 64px;
+  padding: 8px 6px;
+
+  color: #a99c9f;
+
+  text-align: center;
+  text-decoration: none;
+}
+
+.bottom-nav__item:hover {
+  color: white;
+  background: #211719;
+}
+
+/* Active page */
+
+.bottom-nav__item--active {
+  color: #4f8cff;
+  background: #1d1719;
+}
+
+.bottom-nav__item--active::before {
+  content: "";
+
+  position: absolute;
+  top: 0;
+  right: 20%;
+  left: 20%;
+
+  height: 3px;
+
+  background: #4f8cff;
+  border-radius: 0 0 4px 4px;
+}
+
+/* Keep active state blue even when hovering */
+
+.bottom-nav__item--active:hover {
+  color: #6fa1ff;
+  background: #211719;
+}
+
+.bottom-nav__icon {
+  display: block;
+
+  font-size: 1.15rem;
+  line-height: 1;
+}
+
+.bottom-nav__label {
+  display: block;
+
+  font-size: 0.75rem;
+  font-weight: 600;
+  line-height: 1;
+}
+
+/* Logged-out login emphasis */
+
+.bottom-nav__item--primary {
+  color: #f2a6b6;
+}
+
+/* Logout */
+
+.bottom-nav__item--logout {
+  color: #d68a99;
+}
+
+/* Active should override primary color */
+
+.bottom-nav__item--primary.bottom-nav__item--active {
+  color: #4f8cff;
+}
+
+/* Keep content above fixed bottom navigation */
+
+body {
+  padding-bottom: 80px;
+}
+
+/* Tablet */
+
+@media (min-width: 600px) {
+  .top-navbar__inner {
+    min-height: 72px;
+    padding-right: 24px;
+    padding-left: 24px;
+  }
+
+  .top-navbar__logo {
+    width: 44px;
+    height: 44px;
+  }
+
+  .top-navbar__title {
+    font-size: 1.4rem;
+  }
+
+  .bottom-nav__item {
+    min-height: 70px;
+  }
+
+  .bottom-nav__label {
+    font-size: 0.8rem;
+  }
+
+  .bottom-nav__item--active::before {
+    right: 25%;
+    left: 25%;
+  }
+}

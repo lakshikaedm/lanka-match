@@ -1,28 +1,67 @@
-<nav>
-  <% if user_signed_in? %>
-    <span><%= current_user.email %></span>
+<header class="top-navbar">
+  <div class="top-navbar__inner">
+    <%= link_to public_profiles_path, class: "top-navbar__brand" do %>
+      <div class="top-navbar__logo">
+        <span>Logo</span>
+      </div>
 
-    <% if current_user.profile.present? %>
-      <%= link_to "My Profile", profile_path %>
-      <%= link_to "Edit Profile", edit_profile_path %>
-    <% else %>
-      <%= link_to "Create Profile", new_profile_path %>
+      <span class="top-navbar__title">
+        LankaMatch
+      </span>
     <% end %>
-    <%= link_to "Chats", conversations_path %>
-  
-    <%= link_to "Log out", destroy_user_session_path, data: { turbo_method: :delete } %>
-  <% else %>
-    <%= link_to "Sign up", new_user_registration_path %>
-    <%= link_to "Log in", new_user_session_path %>
-  <% end %>
-<% if false %>
-  <% if notice %>
-    <p><%= notice %></p>
-  <% end %>
+  </div>
+</header>
 
-  <% if alert %>
-    <p><%= alert %></p>
-  <% end %>
-<% end %>
-  <%= link_to "Browse Profiles", public_profiles_path %>
+<nav class="bottom-nav">
+  <div class="bottom-nav__inner">
+
+    <%= link_to public_profiles_path,
+                class: "bottom-nav__item #{'bottom-nav__item--active' if current_page?(public_profiles_path)}" do %>
+      <span class="bottom-nav__icon">⌂</span>
+      <span class="bottom-nav__label">Browse</span>
+    <% end %>
+
+    <% if user_signed_in? %>
+      <%= link_to conversations_path,
+                  class: "bottom-nav__item #{'bottom-nav__item--active' if current_page?(conversations_path)}" do %>
+        <span class="bottom-nav__icon">✉</span>
+        <span class="bottom-nav__label">Chats</span>
+      <% end %>
+
+      <% if current_user.profile.present? %>
+        <%= link_to profile_path,
+                    class: "bottom-nav__item #{'bottom-nav__item--active' if current_page?(profile_path) || current_page?(edit_profile_path)}" do %>
+          <span class="bottom-nav__icon">●</span>
+          <span class="bottom-nav__label">Profile</span>
+        <% end %>
+      <% else %>
+        <%= link_to new_profile_path,
+                    class: "bottom-nav__item #{'bottom-nav__item--active' if current_page?(new_profile_path)}" do %>
+          <span class="bottom-nav__icon">＋</span>
+          <span class="bottom-nav__label">Profile</span>
+        <% end %>
+      <% end %>
+
+      <%= link_to destroy_user_session_path,
+                  data: { turbo_method: :delete },
+                  class: "bottom-nav__item bottom-nav__item--logout" do %>
+        <span class="bottom-nav__icon">↪</span>
+        <span class="bottom-nav__label">Logout</span>
+      <% end %>
+
+    <% else %>
+      <%= link_to new_user_registration_path,
+                  class: "bottom-nav__item #{'bottom-nav__item--active' if current_page?(new_user_registration_path)}" do %>
+        <span class="bottom-nav__icon">＋</span>
+        <span class="bottom-nav__label">Sign up</span>
+      <% end %>
+
+      <%= link_to new_user_session_path,
+                  class: "bottom-nav__item #{'bottom-nav__item--active' if current_page?(new_user_session_path)}" do %>
+        <span class="bottom-nav__icon">→</span>
+        <span class="bottom-nav__label">Log in</span>
+      <% end %>
+    <% end %>
+
+  </div>
 </nav>

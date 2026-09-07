@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   get "likes/create"
-  root "home#index"
+  root "public_profiles#index"
 
   devise_for :users
 
