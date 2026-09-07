@@ -5,4 +5,7 @@
  *= require devise
  *= require profiles
  *= require chats
+ *= require public_profiles
+ *= require navbar
+ *=require flash
  */

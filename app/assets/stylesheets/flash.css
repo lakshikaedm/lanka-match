@@ -1,0 +1,63 @@
+.flash-message {
+  position: fixed;
+  top: 84px;
+  left: 50%;
+  z-index: 2000;
+
+  width: calc(100% - 32px);
+  max-width: 420px;
+
+  padding: 12px 16px;
+
+  border: 1px solid transparent;
+  border-radius: 12px;
+
+  transform: translateX(-50%);
+
+  font-size: 0.9rem;
+  font-weight: 600;
+  line-height: 1.4;
+  text-align: center;
+
+  box-shadow: 0 8px 24px rgb(0 0 0 / 30%);
+}
+
+/* Notice - purple / blue */
+
+.flash-message--notice {
+  background: #6655ea;
+  border-color: #7b6cf0;
+  color: white;
+}
+
+/* Success - green */
+
+.flash-message--success {
+  background: #2f8f5b;
+  border-color: #45a970;
+  color: white;
+}
+
+/* Alert / Error - red */
+
+.flash-message--error {
+  background: #d84343;
+  border-color: #ea5a5a;
+  color: white;
+}
+
+/* Warning - yellow */
+
+.flash-message--warning {
+  background: #f2c94c;
+  border-color: #ffd967;
+  color: #211719;
+}
+
+/* Tablet */
+
+@media (min-width: 600px) {
+  .flash-message {
+    top: 92px;
+  }
+}
