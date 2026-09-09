@@ -1,21 +1,73 @@
-<h1>Conversations</h1>
+<div class="conversation-page">
+  <% other_user = @conversation.match.other_user(current_user) %>
+  <% other_profile = other_user.profile %>
 
-<div>
-  <% @messages.each do |message| %>
-    <div>
-      <strong><%= message.sender.email %></strong>
-      <p><%= message.body %></p>
-      <small><%= message.created_at.strftime("%Y-%m-%d %H:%M") %></small>
+  <header class="conversation-header">
+    <%= link_to conversations_path,
+                class: "conversation-back-button",
+                aria: { label: "Back to chats" } do %>
+      <span aria-hidden="true">‹</span>
+    <% end %>
+
+    <div class="conversation-header__identity">
+      <div class="conversation-header__avatar">
+        <%= (other_profile&.display_name || other_user.email).first.upcase %>
+      </div>
+
+      <div class="conversation-header__text">
+        <h1 class="conversation-header__name">
+          <%= other_profile&.display_name || other_user.email %>
+        </h1>
+
+        <p class="conversation-header__status">
+          Conversation
+        </p>
+      </div>
     </div>
+  </header>
 
-    <hr>
-  <% end %>
-</div>
+  <div class="conversation-messages">
+    <% if @messages.any? %>
+      <% @messages.each do |message| %>
+        <% own_message = message.sender_id == current_user.id %>
 
-<%= form_with model: [@conversation, @message], local: true do |f| %>
-  <div>
-    <%= f.text_area :body, rows: 3 %>
+        <div class="message-row <%= "message-row--own" if own_message %>">
+          <div class="message-bubble <%= "message-bubble--own" if own_message %>">
+            <% unless own_message %>
+              <div class="message-sender">
+                <%= message.sender.profile&.display_name || message.sender.email %>
+              </div>
+            <% end %>
+
+            <p class="message-body"><%= message.body %></p>
+
+            <time class="message-time"
+                  datetime="<%= message.created_at.iso8601 %>">
+              <%= message.created_at.strftime("%H:%M") %>
+            </time>
+          </div>
+        </div>
+      <% end %>
+    <% else %>
+      <div class="conversation-empty">
+        <p>No messages yet.</p>
+        <span>Send the first message.</span>
+      </div>
+    <% end %>
   </div>
 
-  <%= f.submit "Send" %>
-<% end %>
+  <div class="conversation-composer">
+    <%= form_with model: [@conversation, @message],
+                  local: true,
+                  class: "conversation-form" do |f| %>
+
+      <%= f.text_area :body,
+                      rows: 1,
+                      class: "conversation-form__input",
+                      placeholder: "Write a message..." %>
+
+      <%= f.submit "Send",
+                   class: "button button--primary conversation-form__submit" %>
+    <% end %>
+  </div>
+</div>

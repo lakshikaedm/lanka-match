@@ -1,19 +1,66 @@
-<h1>Chats</h1>
+<div class="conversations-page">
+  <header class="conversations-header">
+    <h1 class="conversations-title">Chats</h1>
+  </header>
 
-<% if @conversations.any? %>
-  <% @conversations.each do |conversation| %>
-    <% other_user = conversation.match.other_user(current_user) %>
+  <% if @conversations.any? %>
+    <div class="conversation-list">
+      <% @conversations.each do |conversation| %>
+        <% other_user = conversation.match.other_user(current_user) %>
+        <% other_profile = other_user.profile %>
+        <% unread_count = @unread_counts[conversation.id] || 0 %>
 
-    <div>
-      <p>
-        <strong><%= other_user.email %></strong>
+        <%= link_to conversation_path(conversation),
+                    class: "conversation-item" do %>
+
+          <div class="conversation-item__avatar">
+            <span>
+              <%= (other_profile&.display_name || other_user.email).first.upcase %>
+            </span>
+          </div>
+
+          <div class="conversation-item__content">
+            <h2 class="conversation-item__name">
+              <%= other_profile&.display_name || other_user.email %>
+            </h2>
+
+            <p class="conversation-item__status">
+              Tap to open chat
+            </p>
+          </div>
+
+          <div class="conversation-item__right">
+            <% if unread_count.positive? %>
+              <span class="conversation-item__unread">
+                <%= unread_count > 99 ? "99+" : unread_count %>
+              </span>
+            <% end %>
+
+            <span class="conversation-item__arrow" aria-hidden="true">
+              ›
+            </span>
+          </div>
+
+        <% end %>
+      <% end %>
+    </div>
+  <% else %>
+    <div class="conversations-empty">
+      <div class="conversations-empty__icon">
+        ✉
+      </div>
+
+      <h2 class="conversations-empty__title">
+        No chats yet
+      </h2>
+
+      <p class="conversations-empty__text">
+        When you match with someone, your conversations will appear here.
       </p>
 
-      <%= link_to "Open Chat", conversation_path(conversation) %>
+      <%= link_to "Browse profiles",
+                  public_profiles_path,
+                  class: "button button--primary conversations-empty__button" %>
     </div>
-
-    <hr>
   <% end %>
-<% else %>
-  <p>No chats yet.</p>
-<% end %>
+</div>

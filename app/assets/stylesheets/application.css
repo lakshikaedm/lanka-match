@@ -4,7 +4,7 @@
  *= require components
  *= require devise
  *= require profiles
- *= require chats
+ *= require conversations
  *= require public_profiles
  *= require navbar
  *=require flash
