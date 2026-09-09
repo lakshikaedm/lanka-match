@@ -101,6 +101,34 @@
   background: #211719;
 }
 
+.bottom-nav__icon--with-badge {
+  position: relative;
+}
+
+.bottom-nav__badge {
+  position: absolute;
+  top: -9px;
+  right: -14px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  min-width: 18px;
+  height: 18px;
+
+  padding: 0 5px;
+
+  background: #f0445e;
+  border: 2px solid #170f10;
+  border-radius: 999px;
+
+  color: white;
+  font-size: 0.62rem;
+  font-weight: 700;
+  line-height: 1;
+}
+
 /* Active page */
 
 .bottom-nav__item--active {

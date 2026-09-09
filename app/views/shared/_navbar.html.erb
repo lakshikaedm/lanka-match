@@ -23,8 +23,18 @@
 
     <% if user_signed_in? %>
       <%= link_to conversations_path,
-                  class: "bottom-nav__item #{'bottom-nav__item--active' if current_page?(conversations_path)}" do %>
-        <span class="bottom-nav__icon">✉</span>
+                  class: "bottom-nav__item #{'bottom-nav__item--active' if controller_name == 'conversations'}" do %>
+
+        <span class="bottom-nav__icon bottom-nav__icon--with-badge">
+          ✉
+
+          <% if @unread_message_count.to_i.positive? %>
+            <span class="bottom-nav__badge">
+              <%= @unread_message_count > 99 ? "99+" : @unread_message_count %>
+            </span>
+          <% end %>
+        </span>
+
         <span class="bottom-nav__label">Chats</span>
       <% end %>
 
