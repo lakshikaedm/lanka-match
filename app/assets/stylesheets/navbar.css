@@ -9,47 +9,33 @@
 .top-navbar__inner {
   display: flex;
   align-items: center;
+  justify-content: center;
 
   width: 100%;
   max-width: 900px;
-  min-height: 64px;
+  min-height: 88px;
 
   margin: 0 auto;
-  padding: 10px 16px;
+  padding: 12px 16px;
 }
 
 .top-navbar__brand {
-  display: flex;
+  display: inline-flex;
   align-items: center;
-  gap: 10px;
+  justify-content: center;
 
   color: white;
   text-decoration: none;
 }
 
-.top-navbar__logo {
-  display: flex;
-  align-items: center;
-  justify-content: center;
+.top-navbar__logo-image {
+  display: block;
 
-  width: 40px;
-  height: 40px;
+  width: auto;
+  height: 58px;
+  max-width: 320px;
 
-  flex-shrink: 0;
-
-  background: #211719;
-  border: 1px solid #493639;
-  border-radius: 10px;
-
-  color: #75686b;
-  font-size: 0.65rem;
-}
-
-.top-navbar__title {
-  color: white;
-  font-size: 1.25rem;
-  font-weight: 700;
-  line-height: 1;
+  object-fit: contain;
 }
 
 /* Bottom navigation */
@@ -101,6 +87,23 @@
   background: #211719;
 }
 
+.bottom-nav__icon {
+  display: block;
+
+  font-size: 1.15rem;
+  line-height: 1;
+}
+
+.bottom-nav__label {
+  display: block;
+
+  font-size: 0.75rem;
+  font-weight: 600;
+  line-height: 1;
+}
+
+/* Unread badge */
+
 .bottom-nav__icon--with-badge {
   position: relative;
 }
@@ -150,26 +153,9 @@
   border-radius: 0 0 4px 4px;
 }
 
-/* Keep active state blue even when hovering */
-
 .bottom-nav__item--active:hover {
   color: #6fa1ff;
   background: #211719;
-}
-
-.bottom-nav__icon {
-  display: block;
-
-  font-size: 1.15rem;
-  line-height: 1;
-}
-
-.bottom-nav__label {
-  display: block;
-
-  font-size: 0.75rem;
-  font-weight: 600;
-  line-height: 1;
 }
 
 /* Logged-out login emphasis */
@@ -200,18 +186,15 @@ body {
 
 @media (min-width: 600px) {
   .top-navbar__inner {
-    min-height: 72px;
+    min-height: 100px;
+
     padding-right: 24px;
     padding-left: 24px;
   }
 
-  .top-navbar__logo {
-    width: 44px;
-    height: 44px;
-  }
-
-  .top-navbar__title {
-    font-size: 1.4rem;
+  .top-navbar__logo-image {
+    height: 68px;
+    max-width: 380px;
   }
 
   .bottom-nav__item {

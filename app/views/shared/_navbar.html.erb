@@ -1,13 +1,9 @@
 <header class="top-navbar">
   <div class="top-navbar__inner">
     <%= link_to public_profiles_path, class: "top-navbar__brand" do %>
-      <div class="top-navbar__logo">
-        <span>Logo</span>
-      </div>
-
-      <span class="top-navbar__title">
-        LankaMatch
-      </span>
+      <%= image_tag "sith&soul_bg.png",
+              alt: "Sith & Soul",
+              class: "top-navbar__logo-image" %>
     <% end %>
   </div>
 </header>
