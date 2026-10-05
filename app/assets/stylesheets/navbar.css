@@ -1,7 +1,16 @@
 /* Top navbar */
 
 .top-navbar {
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  z-index: 1000;
+
   width: 100%;
+
+  padding-top: env(safe-area-inset-top);
+
   background: #170f10;
   border-bottom: 1px solid #3a292d;
 }
@@ -13,10 +22,10 @@
 
   width: 100%;
   max-width: 900px;
-  min-height: 88px;
+  min-height: 68px;
 
   margin: 0 auto;
-  padding: 12px 16px;
+  padding: 6px 16px;
 }
 
 .top-navbar__brand {
@@ -32,7 +41,7 @@
   display: block;
 
   width: auto;
-  height: 58px;
+  height: 54px;
   max-width: 320px;
 
   object-fit: contain;
@@ -50,6 +59,18 @@
 
   background: #170f10;
   border-top: 1px solid #3a292d;
+
+  transform: translateY(0);
+
+  transition: transform 0.25s ease, opacity 0.2s ease;
+
+  will-change: transform;
+}
+
+.bottom-nav--hidden {
+  transform: translateY(100%);
+  opacity: 0;
+  pointer-events: none;
 }
 
 .bottom-nav__inner {
@@ -179,12 +200,18 @@
 /* Keep content above fixed bottom navigation */
 
 body {
+  padding-top: calc(68px + env(safe-area-inset-top));
   padding-bottom: 80px;
 }
 
 /* Tablet */
 
 @media (min-width: 600px) {
+
+  body {
+    padding-top: 100px;
+  }
+
   .top-navbar__inner {
     min-height: 100px;
 
@@ -195,6 +222,12 @@ body {
   .top-navbar__logo-image {
     height: 68px;
     max-width: 380px;
+  }
+
+  .bottom-nav--hidden {
+    transform: translateY(0);
+    opacity: 1;
+    pointer-events: auto;
   }
 
   .bottom-nav__item {
