@@ -15,7 +15,22 @@
          "notice"
        end %>
 
-  <div class="flash-message flash-message--<%= css_class %>">
-    <%= message %>
+  <% auto_dismiss = %w[notice success].include?(css_class) %>
+
+  <div class="flash-message flash-message--<%= css_class %>"
+    data-controller="flash"
+    data-flash-auto-dismiss-value="<%= auto_dismiss %>"
+  >
+    <div class="flash-message__content">
+      <%= message %>
+    </div>
+
+    <button type="button"
+      class="flash-message_close"
+      data-action="flash#dismiss"
+      aria-label="Dismiss notification"
+    >
+      x
+    </button>
   </div>
 <% end %>
