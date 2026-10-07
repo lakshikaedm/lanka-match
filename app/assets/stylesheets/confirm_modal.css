@@ -1,0 +1,62 @@
+.confirm-modal {
+  width: calc(100% - 32px);
+  max-width: 420px;
+  padding: 0;
+  background: transparent;
+  border: 0;
+  color: white;
+}
+
+.confirm-modal::backdrop {
+  background: rgb(0 0 0 /65%);
+  backdrop-filter: blur(2px);
+}
+
+.confirm-modal__card {
+  padding: 24px 20px;
+  background: #211719;
+  border: 1px solid #493639;
+  border-radius: 18px;
+  text-align: center;
+  box-shadow: 0 16px 40px rgb(0 0 0 /45%);
+}
+
+.confirm-modal__title {
+  margin: 0;
+  color: white;
+  font-size: 1.25rem;
+}
+
+.confirm-modal__message {
+  margin: 12px 0 24px;
+  color: #b9adaf;
+  font-size: 0.9rem;
+  line-height: 1.5;
+}
+
+.confirm-modal__actions {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+
+.confirm-modal__form {
+  width: 100%;
+}
+
+.confirm-modal__cancel {
+  width: 100%;
+  background: #34272a;
+  border: 1px solid #554044;
+  color: white;
+}
+
+.confirm-modal__confirm {
+  width: 100%;
+  background: #d84343;
+  color: white;
+}
+
+.confirm-modal__confirm:hover {
+  background: #c63838;
+}

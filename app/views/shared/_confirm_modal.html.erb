@@ -1,0 +1,38 @@
+<dialog class="confirm-modal"
+        data-confirm-modal-target="dialog"
+        data-action="click->confirm-modal#backdropClose">
+  <div class="confirm-modal__card">
+    <h2 class="confirm-modal__title"
+        data-confirm-modal-target="title">
+      Are you sure?
+    </h2>
+
+    <p class="confirm-modal__message"
+        data-confirm-modal-target="message">
+    </p>
+
+    <div class="confirm-modal__actions">
+      <button type="button"
+              class="button confirm-modal__cancel"
+              data-action="confirm-modal#close">
+        Cancel
+      </button>
+
+      <form method="post"
+            data-confirm-modal-target="form"
+            class="confirm-modal__form">
+        <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+
+        <input type="hidden"
+              name="_method"
+              data-confirm-modal-target="method"
+              disabled>
+        <button type="submit"
+                class="button confirm-modal__confirm"
+                data-confirm-modal-target="confirmButton">
+          Confirm
+        </button>
+      </form>
+    </div>
+  </div>
+</dialog>

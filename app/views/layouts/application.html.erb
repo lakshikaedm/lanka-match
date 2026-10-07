@@ -25,15 +25,18 @@
   </head>
 
   <body>
-    <div class="app">
-      <div class="app-container">
-        <%= render "shared/navbar" %>
-        <%= render "shared/flash" %>
+    <div data-controller="confirm-modal">
+      <div class="app">
+        <div class="app-container">
+          <%= render "shared/navbar" %>
+          <%= render "shared/flash" %>
 
-        <main class="main-content">
-          <%= yield %>
-        </main>
+          <main class="main-content">
+            <%= yield %>
+          </main>
+        </div>
       </div>
+      <%= render "shared/confirm_modal" %>
     </div>
   </body>
 </html>

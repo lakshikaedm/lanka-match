@@ -7,5 +7,6 @@
  *= require conversations
  *= require public_profiles
  *= require navbar
- *=require flash
+ *= require flash
+ *= require confirm_modal
  */
