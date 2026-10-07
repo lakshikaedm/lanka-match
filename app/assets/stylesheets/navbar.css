@@ -183,6 +183,15 @@
   background: #211719;
 }
 
+.bottom-nav__item--button {
+  width: 100%;
+  appearance: none;
+  background: transparent;
+  border: 0;
+  font: inherit;
+  cursor: pointer;
+}
+
 /* Logged-out login emphasis */
 
 .bottom-nav__item--primary {

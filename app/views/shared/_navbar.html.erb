@@ -48,12 +48,19 @@
         <% end %>
       <% end %>
 
-      <%= link_to destroy_user_session_path,
-                  data: { turbo_method: :delete },
-                  class: "bottom-nav__item bottom-nav__item--logout" do %>
+      <button
+        type="button"
+        class="bottom-nav__item bottom-nav__item--logout bottom-nav__item--button"
+        data-action="click->confirm-modal#open"
+        data-confirm-title="Log out?"
+        data-confirm-message="Are you sure you want to log out?"
+        data-confirm-button="Log out"
+        data-confirm-action="<%= destroy_user_session_path %>"
+        data-confirm-method="delete"
+      >
         <span class="bottom-nav__icon">↪</span>
         <span class="bottom-nav__label">Logout</span>
-      <% end %>
+      </button>
 
     <% else %>
       <%= link_to new_user_registration_path,
