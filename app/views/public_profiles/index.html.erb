@@ -29,10 +29,25 @@
           <% if user_signed_in? && current_user != profile.user %>
             <div class="public-profile-card__actions">
               <% if @liked_user_ids.include?(profile.user_id) %>
-                <%= button_to "Unlike",
-                              public_profile_like_path(profile),
-                              method: :delete,
-                              class: "button button--secondary button--full" %>
+                <% if @matched_user_ids.include?(profile.user_id) %>
+                  <button
+                    type="button"
+                    class="button button--secondary button--full"
+                    data-action="click->confirm-modal#open"
+                    data-confirm-title="Remove match?"
+                    data-confirm-message="You are matched with <%= profile.display_name %>. Unliking will remove this match. Are you sure?"
+                    data-confirm-button="Unlike"
+                    data-confirm-action="<%= public_profile_like_path(profile) %>"
+                    data-confirm-method="delete"
+                  >
+                    Unlike
+                  </button>
+                <% else %>
+                  <%= button_to "Unlike",
+                      public_profile_like_path(profile),
+                      method: :delete,
+                      class: "button button-secondary button--full" %>
+                <% end %>
               <% else %>
                 <%= button_to "Like",
                               public_profile_like_path(profile),
