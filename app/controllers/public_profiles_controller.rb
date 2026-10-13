@@ -12,6 +12,21 @@ class PublicProfilesController < ApplicationController
                       current_user.
                       given_likes.pluck(:liked_id).
                       to_set : Set.new
+
+    if user_signed_in?
+      @matched_user_ids =
+        Match.
+          where(
+            "user_one_id = :id OR user_two_id = :id",
+            id: current_user.id
+          )
+          .pluck(:user_one_id, :user_two_id)
+          .map do |user_one_id, user_two_id|
+            user_one_id == current_user.id ? user_two_id : user_one_id
+          end
+    else
+      @matched_user_ids = []
+    end
   end
 
   def show
